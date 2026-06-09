@@ -91,7 +91,13 @@ firewall the port appropriately (the server has no auth of its own).
 - Threats only include fleets inside your scan range — a fleet can "appear"
   with a short ETA when it enters scan. That's the game, not a bug.
 - The messages endpoints are undocumented and may break; tools report an
-  `error` field instead of crashing, and `check_events` keeps working.
+  `error` field instead of crashing, and `check_events` keeps working. The
+  current flow (verified live, cross-checked with anicolao/aib):
+  `POST /account_api/login` (form: type, alias, password) then
+  `POST /game_api/fetch_game_messages` (form: type, gameId, group, count,
+  offset, version=np4) with the session cookie. The `events` group returns
+  templated payloads (`war_declared`, `peace_requested`, ...) with player
+  uids, which the server enriches with aliases.
 
 ## Tests
 

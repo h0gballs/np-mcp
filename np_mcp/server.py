@@ -185,6 +185,20 @@ def build_server(cfg: Config) -> FastMCP:
             msgs = _session().fetch_messages(g.game_number, group, count)
         except MessagesUnavailable as e:
             return {"error": str(e), "messages": []}
+
+        # Resolve player uids to aliases (senders, event participants).
+        try:
+            sd = fetch_scanning_data(g.game_number, g.code)
+            for m in msgs:
+                if m.get("from_uid") is not None:
+                    m["from"] = snapshot.alias(sd, m["from_uid"])
+                for key in ("attacker", "defender", "puid", "uid", "from_puid", "to_puid"):
+                    val = m.get("data", {}).get(key)
+                    if isinstance(val, int):
+                        m["data"][f"{key}_alias"] = snapshot.alias(sd, val)
+        except Exception as e:
+            log.warning("alias enrichment failed: %s", e)
+
         return {
             "unread": sum(1 for m in msgs if m["unread"]),
             "messages": msgs,
