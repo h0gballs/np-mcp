@@ -1,0 +1,13 @@
+# Games to expose through the MCP server. Same shape as np-reminder.
+games:
+  - game_number: "1234"        # from the game URL: np.ironhelmet.com/game/<game_number>
+    code: "YOUR_API_CODE"      # read-only API key (game menu -> API Key)
+    label: "My Game"           # optional friendly name; tools accept it as `game`
+
+# check_events fires a low_cash event when a production cycle completes and
+# your cash is below this.
+low_cash_threshold: 50
+
+# Turn-based games only: check_events fires turn_deadline_soon when the turn
+# deadline is within this many minutes and you are not marked ready.
+turn_warning_minutes: 720

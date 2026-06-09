@@ -1,0 +1,16 @@
+[Unit]
+Description=Neptune's Pride MCP server
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=__USER__
+WorkingDirectory=__DIR__
+EnvironmentFile=__DIR__/.env
+ExecStart=__DIR__/.venv/bin/python -m np_mcp
+Restart=always
+RestartSec=30
+
+[Install]
+WantedBy=multi-user.target
