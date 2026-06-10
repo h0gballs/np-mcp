@@ -108,6 +108,7 @@ def build_server(cfg: Config) -> FastMCP:
     def get_threats(game: str = "") -> list[dict]:
         """Enemy fleets heading for my stars: attacker, ships, target star,
         ETA in ticks/minutes, and the defending star's ships. Sorted by ETA.
+        Fleets from formal allies are excluded (they cannot capture stars).
         Empty list = nothing visibly incoming."""
         _, sd = _fetch(game)
         return incoming_fleets(sd)

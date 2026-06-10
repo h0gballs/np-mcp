@@ -3,7 +3,9 @@
 Visible fleets expose their waypoint queue as `o`: a list of orders
 [delay_ticks, target_star_uid, action, ships]. A fleet whose queue includes
 one of my stars is an incoming attack; ETA is travel time along the queue
-(fleet `speed` is map-distance per tick) plus any waypoint delays.
+(fleet `speed` is map-distance per tick) plus any waypoint delays. Fleets
+from formal allies (war value 0) are skipped: allies cannot capture my
+stars, so their visits are reinforcements or transit, not attacks.
 """
 
 import math
@@ -29,6 +31,9 @@ def incoming_fleets(sd: dict) -> list[dict]:
         owner = fleet.get("puid")
         if owner == uid:
             continue
+        raw_war = war_map.get(str(owner), 3)
+        if raw_war == 0:
+            continue  # formal ally: cannot capture my stars
         orders = fleet.get("o") or []
         speed = float(fleet.get("speed", 0)) or float(sd.get("fleetSpeed", 1 / 24))
 
@@ -46,7 +51,6 @@ def incoming_fleets(sd: dict) -> list[dict]:
 
             if str(target_uid) in mine:
                 defending = mine[str(target_uid)]
-                raw_war = war_map.get(str(owner), 3)
                 threats.append(
                     {
                         "fleet_uid": fleet.get("uid"),

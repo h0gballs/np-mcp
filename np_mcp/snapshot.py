@@ -17,10 +17,11 @@ TECH_NAMES = {
     6: "terraforming",
 }
 
-# players[me].war values, best-effort: 0 observed for players actively fighting
-# us, 3 is the default (including toward yourself). 1/2 appear transitional
-# (peace offer pending). Raw value is always reported alongside the label.
-WAR_LABELS = {0: "war", 1: "peace_pending", 2: "peace_pending", 3: "peace"}
+# players[me].war values, per the NP client (cf. anicolao/npa combatcalc.ts
+# allied()): 0 = formally allied, 3 = war (the default, including toward
+# yourself). 1/2 are transitional (alliance offer / declared-war notice).
+# Raw value is always reported alongside the label.
+WAR_LABELS = {0: "allied", 1: "pending", 2: "pending", 3: "war"}
 
 MS_PER_MIN = 60_000
 

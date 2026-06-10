@@ -35,7 +35,7 @@ def make_sd() -> dict:
                 "uid": 1,
                 "alias": "Me",
                 "cash": 100,
-                "war": {"1": 3, "2": 0},
+                "war": {"1": 3, "2": 3},
                 "tech": {"5": {"kind": 5, "level": 2, "research": 10, "cost": 100}},
                 "researching": 5,
                 "researchingNext": 5,

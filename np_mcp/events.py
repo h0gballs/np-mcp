@@ -135,7 +135,12 @@ def diff(prev: dict | None, cur: dict, sd: dict, cfg) -> list[dict]:
             if old is None or int(old) == int(val):
                 continue
             who = snapshot.alias(sd, puid)
-            etype = "war_declared" if int(val) == 0 else "relation_changed"
+            if int(val) == 0:
+                etype = "alliance_formed"
+            elif int(val) == 3:
+                etype = "war_declared"
+            else:
+                etype = "relation_changed"
             events.append(
                 _ev(etype, f"war-{puid}-{val}-{cur['tick']}",
                     f"Relation with {who} changed: "

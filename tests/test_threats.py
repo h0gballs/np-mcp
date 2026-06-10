@@ -39,6 +39,12 @@ def test_own_fleets_and_unrelated_targets_ignored(sd):
     assert incoming_fleets(sd) == []
 
 
+def test_allied_fleets_are_not_threats(sd):
+    sd["players"]["1"]["war"]["2"] = 0  # Foe is a formal ally
+    sd["fleets"]["100"] = enemy_fleet(100, 1.5, 0.0, 40, [[0, 10, 0, 0]])
+    assert incoming_fleets(sd) == []
+
+
 def test_sorted_by_eta(sd):
     sd["fleets"]["100"] = enemy_fleet(100, 3.0, 0.0, 10, [[0, 10, 0, 0]])
     sd["fleets"]["101"] = enemy_fleet(101, 1.2, 0.0, 10, [[0, 11, 0, 0]])

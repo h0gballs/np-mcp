@@ -74,12 +74,16 @@ def test_production_and_low_cash(sd, cfg):
 
 
 def test_war_and_relation_changes(sd, cfg):
-    sd["players"]["1"]["war"]["2"] = 3
+    # 3 -> 0: a formal alliance was made.
     prev = summarize(sd)
     sd["players"]["1"]["war"]["2"] = 0
-    _, evs = step(sd, prev, cfg)
-    assert types(evs) == ["war_declared"]
+    cur, evs = step(sd, prev, cfg)
+    assert types(evs) == ["alliance_formed"]
     assert evs[0]["player"] == "Foe"
+    # 0 -> 3: the alliance ended; we are at war.
+    sd["players"]["1"]["war"]["2"] = 3
+    _, evs2 = step(sd, cur, cfg)
+    assert types(evs2) == ["war_declared"]
 
 
 def test_conceded_and_eliminated(sd, cfg):
