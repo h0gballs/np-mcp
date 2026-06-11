@@ -2,8 +2,10 @@
 
 Field semantics cross-checked against the NP4 client and the open-source
 Neptune's Pride Agent (anicolao/npa). Tech "kind" ids:
-    0 banking, 1 experimentation, 2 manufacturing, 3 propulsion,
+    0 banking, 1 experimentation, 2 manufacturing, 3 range,
     4 scanning, 5 weapons, 6 terraforming
+(kind 3 is "propulsion" in the raw NP4 data; exposed here as "range",
+the player-facing name for hyperspace range.)
 (kinds disabled via config noScn/noTer/noExp are simply absent).
 """
 
@@ -11,7 +13,7 @@ TECH_NAMES = {
     0: "banking",
     1: "experimentation",
     2: "manufacturing",
-    3: "propulsion",
+    3: "range",
     4: "scanning",
     5: "weapons",
     6: "terraforming",
