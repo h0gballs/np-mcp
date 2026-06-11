@@ -3,6 +3,8 @@ name = "np-mcp"
 version = "0.1.0"
 description = "Neptune's Pride MCP server: game status, threats, research, events, messages"
 requires-python = ">=3.11"
+license = "MIT"
+license-files = ["LICENSE"]
 dependencies = [
     "mcp>=1.8",
     "requests>=2.31",

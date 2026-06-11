@@ -112,3 +112,12 @@ checks against a captured live `scanning_data` fixture.
 
 ## References
 - https://github.com/anicolao/npa was heavily referenced for NP4 API discovery and manipulation
+
+## License
+
+[MIT](LICENSE) — do whatever you like, just keep the copyright notice.
+
+Unofficial. Not affiliated with or endorsed by Ironhelmet/Neptune's Pride;
+"Neptune's Pride" is their trademark. This project uses the game's read-only
+API key plus an undocumented login endpoint, either of which may change or
+break without notice.
