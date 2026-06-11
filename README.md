@@ -109,3 +109,6 @@ make test
 Covers threat detection/ETA math, research ETA, production timing, the event
 diff engine (one test per event type, dedup, JSON round-trip), and sanity
 checks against a captured live `scanning_data` fixture.
+
+## References
+- https://github.com/anicolao/npa was heavily referenced for NP4 API discovery and manipulation
