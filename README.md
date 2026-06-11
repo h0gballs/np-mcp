@@ -84,8 +84,9 @@ firewall the port appropriately (the server has no auth of its own).
 - Field semantics (tech kind ids, research cost = `level * cost`, fleet order
   arrays `[delay, target_star, action, ships]`) were cross-checked against
   the open-source Neptune's Pride Agent (anicolao/npa). Tech kinds:
-  0 banking, 1 experimentation, 2 manufacturing, 3 propulsion, 4 scanning,
-  5 weapons, 6 terraforming.
+  0 banking, 1 experimentation, 2 manufacturing, 3 range, 4 scanning,
+  5 weapons, 6 terraforming. (Kind 3 is "propulsion" in the raw NP4 data;
+  exposed here as "range", the player-facing name for hyperspace range.)
 - `war` relation labels are best-effort (0 = war, 3 = peace/default); the raw
   value is always included, and any change fires an event regardless.
 - Threats only include fleets inside your scan range — a fleet can "appear"
